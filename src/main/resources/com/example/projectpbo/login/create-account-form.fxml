@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectpbo.controllers.login.CreateAccountController">
+   <children>
+      <TextField fx:id="emailTextField" layoutX="158.0" layoutY="43.0" prefHeight="31.0" prefWidth="204.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="usernameTextField" layoutX="158.0" layoutY="92.0" prefHeight="31.0" prefWidth="204.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordField" layoutX="158.0" layoutY="144.0" prefHeight="31.0" prefWidth="204.0" />
+      <PasswordField fx:id="reEnterPasswordField" layoutX="158.0" layoutY="189.0" prefHeight="31.0" prefWidth="204.0" />
+      <Label layoutX="24.0" layoutY="97.0" text="Enter a username">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="146.0" text="Enter a password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="48.0" text="Enter an email">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="196.0" text="Re-enter password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelButton" layoutX="353.0" layoutY="240.0" mnemonicParsing="false" onAction="#onCancelButton" prefHeight="31.0" prefWidth="62.0" text="Cancel" />
+      <Button fx:id="createAccountButton" layoutX="245.0" layoutY="240.0" mnemonicParsing="false" onAction="#onCreateAccount" prefHeight="31.0" prefWidth="94.0" text="Create Acount" />
+      <Label fx:id="invalidEmailLabel" layoutX="373.0" layoutY="48.0" text="Email is already used!" textFill="#d35656">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="invalidUsernameLabel" layoutX="373.0" layoutY="96.0" text="Username is already used!" textFill="#d35656">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="invalidPasswordLabel" layoutX="427.0" layoutY="140.0" text="Password is invalid!" textFill="#d35656">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="invalidReEnterPasswordLabel" layoutX="427.0" layoutY="194.0" text="Password didn't match!" textFill="#d35656">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="invalidPasswordLabel_2" layoutX="428.0" layoutY="159.0" text="It should be between 5-20 characters" textFill="#d35656">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="showedPasswordTextField" layoutX="158.0" layoutY="144.0" prefHeight="31.0" prefWidth="204.0" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="showedReEnterPasswordTextField" layoutX="158.0" layoutY="189.0" prefHeight="31.0" prefWidth="204.0" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="showPasswordButton" layoutX="373.0" layoutY="143.0" mnemonicParsing="false" onMousePressed="#showPassword" onMouseReleased="#hidePassword" prefHeight="31.0" prefWidth="35.0">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../password-show-icon-removebg.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="showPasswordButton_2" layoutX="373.0" layoutY="188.0" mnemonicParsing="false" onMousePressed="#reEnterShowPassword" onMouseReleased="#reEnterHidePassword" prefHeight="31.0" prefWidth="35.0">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../password-show-icon-removebg.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</Pane>

@@ -1,12 +1,12 @@
-package com.example.projectbd.utils;
+package com.example.projectpbo.utils;
 
 import java.sql.*;
 
 public class DBUtils {
-    // TODO: Pastikan mengganti 'demo' dengan nama database pada MySQL
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/demo";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/laundry";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
+
 
     /**
      * Create Connection to Mysql Database
@@ -18,7 +18,7 @@ public class DBUtils {
         try {
             con = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            System.out.println("Connection failed !");
+            System.out.println("Connection failed!");
             e.printStackTrace();
             throw e;
         }

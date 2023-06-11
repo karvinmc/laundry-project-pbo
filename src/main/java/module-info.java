@@ -1,6 +1,7 @@
 module com.example.projectpbo {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -8,4 +9,10 @@ module com.example.projectpbo {
 
     opens com.example.projectpbo to javafx.fxml;
     exports com.example.projectpbo;
+    opens com.example.projectpbo.controllers to javafx.fxml;
+    exports com.example.projectpbo.controllers;
+    opens com.example.projectpbo.beans to javafx.fxml;
+    exports com.example.projectpbo.beans;
+    exports com.example.projectpbo.controllers.login;
+    opens com.example.projectpbo.controllers.login to javafx.fxml;
 }
