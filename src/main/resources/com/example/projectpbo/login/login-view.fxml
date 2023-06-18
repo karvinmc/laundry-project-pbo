@@ -24,7 +24,7 @@
       </Label>
       <ImageView fitHeight="257.0" fitWidth="254.0" layoutX="54.0" layoutY="69.0">
          <image>
-            <Image url="@../app-icon.png" />
+            <Image url="@../images/app-icon.png" />
          </image>
       </ImageView>
       <TextField fx:id="usernameTextField" layoutX="348.0" layoutY="137.0" prefHeight="31.0" prefWidth="204.0" promptText="User Name">

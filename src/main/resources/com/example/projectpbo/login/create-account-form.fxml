@@ -84,7 +84,7 @@
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../password-show-icon-removebg.png" />
+                  <Image url="@../images/password-show-icon-removebg.png" />
                </image>
             </ImageView>
          </graphic>
@@ -93,7 +93,7 @@
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../password-show-icon-removebg.png" />
+                  <Image url="@../images/password-show-icon-removebg.png" />
                </image>
             </ImageView>
          </graphic>

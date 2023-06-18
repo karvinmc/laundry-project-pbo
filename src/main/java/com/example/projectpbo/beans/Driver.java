@@ -5,12 +5,20 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Driver {
     private SimpleStringProperty namaDriver;
-    private SimpleStringProperty noTelpDriver;
+    private SimpleIntegerProperty noTelpDriver;
+    private SimpleIntegerProperty idDriver;
+
 
     // Constructor
-    public Driver(String namaDriver, String noTelpDriver) {
+    public Driver(String namaDriver, int noTelpDriver) {
         this.namaDriver = new SimpleStringProperty(namaDriver);
-        this.noTelpDriver = new SimpleStringProperty(noTelpDriver);
+        this.noTelpDriver = new SimpleIntegerProperty(noTelpDriver);
+    }
+
+    public Driver(int idDriver, String namaDriver, int noTelpDriver) {
+        this.idDriver = new SimpleIntegerProperty(idDriver);
+        this.namaDriver = new SimpleStringProperty(namaDriver);
+        this.noTelpDriver = new SimpleIntegerProperty(noTelpDriver);
     }
 
     // Getter setters
@@ -26,15 +34,27 @@ public class Driver {
         this.namaDriver.set(namaDriver);
     }
 
-    public String getNoTelpDriver() {
+    public int getNoTelpDriver() {
         return noTelpDriver.get();
     }
 
-    public SimpleStringProperty noTelpDriverProperty() {
+    public SimpleIntegerProperty noTelpDriverProperty() {
         return noTelpDriver;
     }
 
-    public void setNoTelpDriver(String noTelpDriver) {
+    public void setNoTelpDriver(int noTelpDriver) {
         this.noTelpDriver.set(noTelpDriver);
+    }
+
+    public int getIdDriver() {
+        return idDriver.get();
+    }
+
+    public SimpleIntegerProperty idDriverProperty() {
+        return idDriver;
+    }
+
+    public void setIdDriver(int idDriver) {
+        this.idDriver.set(idDriver);
     }
 }

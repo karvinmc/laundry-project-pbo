@@ -1,20 +1,48 @@
 package com.example.projectpbo.beans;
 
+import com.example.projectpbo.dao.RadiusDAO;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+
+import java.util.ArrayList;
 
 public class Customer {
     private SimpleStringProperty namaCustomer;
     private SimpleStringProperty alamatCustomer;
-    private SimpleStringProperty noTelpCustomer;
+    private SimpleIntegerProperty noTelpCustomer;
+    private SimpleIntegerProperty idCustomer;
+    private Radius radiusCustomer;
 
     // Constructor
-    public Customer(String namaCustomer, String alamatCustomer, String noTelpCustomer) {
+    public Customer(String namaCustomer, String alamatCustomer, int noTelpCustomer, int idRadius) {
         this.namaCustomer = new SimpleStringProperty(namaCustomer);
         this.alamatCustomer = new SimpleStringProperty(alamatCustomer);
-        this.noTelpCustomer = new SimpleStringProperty(noTelpCustomer);
+        this.noTelpCustomer = new SimpleIntegerProperty(noTelpCustomer);
+        this.radiusCustomer = getRadiusCustomer(idRadius);
+    }
+
+    public Customer(int idCustomer, String namaCustomer, String alamatCustomer, int noTelpCustomer, int idRadius) {
+        this.idCustomer = new SimpleIntegerProperty(idCustomer);
+        this.namaCustomer = new SimpleStringProperty(namaCustomer);
+        this.alamatCustomer = new SimpleStringProperty(alamatCustomer);
+        this.noTelpCustomer = new SimpleIntegerProperty(noTelpCustomer);
+        this.radiusCustomer = getRadiusCustomer(idRadius);
     }
 
     // Getter setters
+
+    public int getIdCustomer() {
+        return idCustomer.get();
+    }
+
+    public SimpleIntegerProperty idCustomerProperty() {
+        return idCustomer;
+    }
+
+    public void setIdCustomer(int idCustomer) {
+        this.idCustomer.set(idCustomer);
+    }
+
     public String getNamaCustomer() {
         return namaCustomer.get();
     }
@@ -39,15 +67,34 @@ public class Customer {
         this.alamatCustomer.set(alamatCustomer);
     }
 
-    public String getNoTelpCustomer() {
+    public int getNoTelpCustomer() {
         return noTelpCustomer.get();
     }
 
-    public SimpleStringProperty noTelpCustomerProperty() {
+    public SimpleIntegerProperty noTelpCustomerProperty() {
         return noTelpCustomer;
     }
 
-    public void setNoTelpCustomer(String noTelpCustomer) {
+    public void setNoTelpCustomer(int noTelpCustomer) {
         this.noTelpCustomer.set(noTelpCustomer);
+    }
+
+    public Radius getRadiusCustomer() {
+        return radiusCustomer;
+    }
+
+    public void setRadiusCustomer(Radius radiusCustomer) {
+        this.radiusCustomer = radiusCustomer;
+    }
+
+    // Methods
+    private Radius getRadiusCustomer(int idRadius) {
+        ArrayList<Radius> radiusList = RadiusDAO.getAllRadius();
+        for (Radius r : radiusList) {
+            if (r.getIdRadius() == idRadius) {
+                return r;
+            }
+        }
+        return null;
     }
 }

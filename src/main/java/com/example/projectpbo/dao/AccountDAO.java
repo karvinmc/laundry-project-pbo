@@ -68,7 +68,7 @@ public class AccountDAO {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
                     + TABLE_NAME + " SET `password` = ?"
-                    + "WHERE `username` = ?");
+                    + " WHERE `username` = ?");
             ps.setString(1, account.getPasswordAccount());
             ps.setString(2, account.getUsernameAccount());
             ps.execute();

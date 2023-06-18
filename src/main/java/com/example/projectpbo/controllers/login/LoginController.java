@@ -69,7 +69,7 @@ public class LoginController {
     public void onLogin() throws IOException {
         if (isValidLogin(usernameTextField.getText(), passwordField.getText())) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/com/example/projectpbo/main-view.fxml"
+                    "/com/example/projectpbo/main/main-view.fxml"
             ));
             Parent root = loader.load();
             Scene mainScene = new Scene(root);

@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class DetailOrder {
+    // TODO: MAPPING dan REVISI!
     private SimpleStringProperty kondisiItem;
     private SimpleStringProperty jenisLayanan;
     private SimpleStringProperty diskon;
