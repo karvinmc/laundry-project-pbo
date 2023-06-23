@@ -25,6 +25,7 @@ public class MetodePembayaranDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 MetodePembayaran metodePembayaran = new MetodePembayaran(
+                        rs.getInt("id_metode_pembayaran"),
                         rs.getString("nama_metode_pembayaran")
                 );
                 metodePembayaranList.add(metodePembayaran);

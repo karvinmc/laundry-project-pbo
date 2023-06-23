@@ -10,17 +10,6 @@ public class Radius {
     private SimpleIntegerProperty idRadius;
 
     // Constructor
-    public Radius(int minRadius, int maxRadius, int harga) {
-        this.minRadius = new SimpleIntegerProperty(minRadius);
-        this.maxRadius = new SimpleIntegerProperty(maxRadius);
-        this.harga = new SimpleIntegerProperty(harga);
-    }
-
-    public Radius(int minRadius, int harga) {
-        this.minRadius = new SimpleIntegerProperty(minRadius);
-        this.harga = new SimpleIntegerProperty(harga);
-    }
-
     public Radius(int idRadius ,int minRadius, int maxRadius, int harga) {
         this.idRadius = new SimpleIntegerProperty(idRadius);
         this.minRadius = new SimpleIntegerProperty(minRadius);

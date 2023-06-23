@@ -24,12 +24,13 @@ public class RadiusDAO {
                     + TABLE_NAME);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Radius radius = new Radius(
-                        rs.getInt("min_radius"),
-                        rs.getInt("max_radius"),
-                        rs.getInt("harga")
-                );
-                radiusList.add(radius);
+                    Radius radius = new Radius(
+                            rs.getInt("id_radius"),
+                            rs.getInt("min_radius"),
+                            rs.getInt("max_radius"),
+                            rs.getInt("harga")
+                    );
+                    radiusList.add(radius);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

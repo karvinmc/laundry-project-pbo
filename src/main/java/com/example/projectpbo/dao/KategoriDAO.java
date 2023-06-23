@@ -25,6 +25,7 @@ public class KategoriDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Kategori kategori = new Kategori(
+                        rs.getInt("id_kategori"),
                         rs.getString("nama_kategori")
                 );
                 kategoriList.add(kategori);

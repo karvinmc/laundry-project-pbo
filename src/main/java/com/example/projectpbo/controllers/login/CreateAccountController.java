@@ -154,23 +154,6 @@ public class CreateAccountController {
         return isValid;
     }
 
-    /**
-     * Generate 6 random characters by using StringBuilder for the reset code of an account
-     * @return Reset Code String
-     */
-    public String generateRandomCode() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        Random random = new Random();
-        StringBuilder codeBuilder = new StringBuilder();
-
-        for (int i = 0; i < 6; i++) {
-            int randomIndex = random.nextInt(characters.length());
-            codeBuilder.append(characters.charAt(randomIndex));
-        }
-
-        return codeBuilder.toString();
-    }
-
     @FXML
     public void showPassword() {
         showedPasswordTextField.setText(passwordField.getText());
@@ -204,7 +187,6 @@ public class CreateAccountController {
                     usernameTextField.getText().toLowerCase(), passwordField.getText().toLowerCase(), emailTextField.getText()
             );
             if (isEmailValid(account) && isUsernameValid(account) && isPasswordValid() && isReEnterPasswordValid()) {
-                account.setResetCodeAccount(generateRandomCode());
                 AccountDAO.insertAccount(account);
 
                 // Giving account to SharedData
@@ -218,20 +200,8 @@ public class CreateAccountController {
                 alert.showAndWait();
 
                 if (alert.getResult() == ButtonType.OK) {
-                    // Display reset code scene
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                            "/com/example/projectpbo/login/reset-code-view.fxml"
-                    ));
-                    Parent root = loader.load();
-                    Scene codeScene = new Scene(root);
-                    CodeController codeController = loader.getController();
-                    Stage previousStage = (Stage) createAccountScene.getWindow();
-                    previousStage.close();
-                    createAccountStage.setScene(codeScene);
-                    codeController.setCodeStage(createAccountStage);
-                    createAccountStage.setTitle("Reset Code");
-                    createAccountStage.sizeToScene();
-                    createAccountStage.show();
+                    // Back to log in view
+                    createAccountStage.close();
                 }
             }
         } else {

@@ -4,20 +4,12 @@ public class Account {
     private String emailAccount;
     private String usernameAccount;
     private String passwordAccount;
-    private String resetCodeAccount;
 
     // Constructor
     public Account(String usernameAccount, String passwordAccount, String emailAccount) {
         this.usernameAccount = usernameAccount;
         this.passwordAccount = passwordAccount;
         this.emailAccount = emailAccount;
-    }
-
-    public Account(String usernameAccount, String passwordAccount, String emailAccount, String resetCodeAccount) {
-        this.usernameAccount = usernameAccount;
-        this.passwordAccount = passwordAccount;
-        this.emailAccount = emailAccount;
-        this.resetCodeAccount = resetCodeAccount;
     }
 
     // Getter setters
@@ -43,13 +35,5 @@ public class Account {
 
     public void setPasswordAccount(String passwordAccount) {
         this.passwordAccount = passwordAccount;
-    }
-
-    public String getResetCodeAccount() {
-        return resetCodeAccount;
-    }
-
-    public void setResetCodeAccount(String resetCodeAccount) {
-        this.resetCodeAccount = resetCodeAccount;
     }
 }

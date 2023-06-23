@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.projectpbo.controllers.main.PromoController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Text layoutX="27.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama ">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <TextField layoutX="139.0" layoutY="26.0" />
+        <Text layoutX="27.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal Berlaku">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Button layoutX="780.0" layoutY="482.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="94.0" text="Add Promo">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <DatePicker layoutX="139.0" layoutY="68.0" prefHeight="25.0" prefWidth="149.0" />
+        <Text layoutX="305.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sampai dengan">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <DatePicker layoutX="409.0" layoutY="68.0" prefHeight="25.0" prefWidth="149.0" />
+    </children>
+</AnchorPane>

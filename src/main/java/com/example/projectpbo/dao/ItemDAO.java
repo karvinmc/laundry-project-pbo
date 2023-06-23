@@ -25,9 +25,9 @@ public class ItemDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Item item = new Item(
+                        rs.getInt("id_item"),
                         rs.getString("nama_item"),
                         rs.getInt("harga_item"),
-                        rs.getString("lama_selesai"),
                         rs.getInt("id_kategori")
                 );
                 itemList.add(item);
@@ -47,11 +47,10 @@ public class ItemDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("INSERT INTO "
-                    + TABLE_NAME + "(nama_item, harga_item, lama_selesai, id_kategori) values(?, ?, ?, ?)");
+                    + TABLE_NAME + "(nama_item, harga_item, id_kategori) values(?, ?, ?)");
             ps.setString(1, item.getNamaItem());
             ps.setInt(2, item.getHargaItem());
-            ps.setString(3, item.getLamaSelesai());
-            ps.setInt(4, item.getKategoriItem().getIdKategori());
+            ps.setInt(3, item.getKategoriItem().getIdKategori());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -67,12 +66,11 @@ public class ItemDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
-                    + TABLE_NAME + " SET `nama_item` = ?, SET `harga_item` = ?, SET `lama_selesai` = ?, SET `id_kategori` = ?"
+                    + TABLE_NAME + " SET `nama_item` = ?, SET `harga_item` = ?, SET `id_kategori` = ?"
                     + " WHERE `id_item` = ?");
             ps.setString(1, item.getNamaItem());
             ps.setInt(2, item.getHargaItem());
-            ps.setString(3, item.getLamaSelesai());
-            ps.setInt(4, item.getKategoriItem().getIdKategori());
+            ps.setInt(3, item.getKategoriItem().getIdKategori());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

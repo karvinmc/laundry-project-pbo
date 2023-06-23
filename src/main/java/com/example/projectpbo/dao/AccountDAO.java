@@ -27,8 +27,7 @@ public class AccountDAO {
                 Account account = new Account(
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("email"),
-                        rs.getString("reset_code")
+                        rs.getString("email")
                 );
                 accountList.add(account);
             }
@@ -47,11 +46,10 @@ public class AccountDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("INSERT INTO "
-                    + TABLE_NAME + "(username, password, email, reset_code) values(?, ?, ?, ?)");
+                    + TABLE_NAME + "(username, password, email) values(?, ?, ?)");
             ps.setString(1, account.getUsernameAccount());
             ps.setString(2, account.getPasswordAccount());
             ps.setString(3, account.getEmailAccount());
-            ps.setString(4, account.getResetCodeAccount());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -96,7 +94,7 @@ public class AccountDAO {
         }
     }
 
-    public static void setLoginStatus(Account account, int status) {
+    public static void setLoginStatus(Account account, boolean status) {
         Connection con = null;
         PreparedStatement ps = null;
         try {
@@ -104,7 +102,7 @@ public class AccountDAO {
             ps = con.prepareStatement("UPDATE "
                     + TABLE_NAME + " SET `login_status` = ?"
                     + " WHERE `username` = ?");
-            ps.setInt(1, status);
+            ps.setBoolean(1, status);
             ps.setString(2, account.getUsernameAccount());
             ps.execute();
         } catch (SQLException e) {
@@ -129,8 +127,7 @@ public class AccountDAO {
                 account = new Account(
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("email"),
-                        rs.getString("reset_code")
+                        rs.getString("email")
                 );
             }
         } catch (SQLException e) {
@@ -157,8 +154,7 @@ public class AccountDAO {
                 account = new Account(
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("email"),
-                        rs.getString("reset_code")
+                        rs.getString("email")
                 );
             }
         } catch (SQLException e) {

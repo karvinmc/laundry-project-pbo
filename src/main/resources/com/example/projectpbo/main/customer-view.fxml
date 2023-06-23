@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.projectpbo.controllers.main.CustomerController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Text layoutX="27.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama ">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <TextField fx:id="namaTextField" layoutX="103.0" layoutY="26.0" />
+        <Text layoutX="27.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alamat">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <TextField fx:id="alamatTextField" layoutX="104.0" layoutY="61.0" />
+        <Text layoutX="27.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No Telepon">
+            <font>
+                <Font size="14.0" />
+            </font></Text>
+        <TextField fx:id="noTelpTextField" layoutX="105.0" layoutY="100.0" />
+        <Button layoutX="760.0" layoutY="482.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="108.0" text="Add Customer">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <RadioButton fx:id="radius_1" layoutX="105.0" layoutY="142.0" mnemonicParsing="false" text="Radius 0-5 km = Rp 10.000">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="radius_2" layoutX="105.0" layoutY="177.0" mnemonicParsing="false" text="Radius 5-10 km = Rp 20.000">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="radius_3" layoutX="105.0" layoutY="210.0" mnemonicParsing="false" text="Radius &gt;10 km = Rp 30.000">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </RadioButton>
+        <Text layoutX="27.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pilih Radius">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

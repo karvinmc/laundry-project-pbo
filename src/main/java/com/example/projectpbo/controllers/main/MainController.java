@@ -1,6 +1,5 @@
-package com.example.projectpbo.controllers;
+package com.example.projectpbo.controllers.main;
 
-import com.example.projectpbo.controllers.login.CodeController;
 import com.example.projectpbo.controllers.login.LoginController;
 import com.example.projectpbo.dao.AccountDAO;
 import com.example.projectpbo.shared.SharedData;
@@ -8,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,33 +19,6 @@ public class MainController {
     private SharedData sharedData = SharedData.getInstance();
 
     public void initialize() {
-    }
-
-    @FXML
-    public void onResetCodeMenuItem() throws IOException {
-        Stage popupStage = new Stage();
-
-        // Set the modality to WINDOW_MODAL and specify the main stage as the owner
-        popupStage.initOwner(mainScene.getWindow());
-        popupStage.initModality(Modality.WINDOW_MODAL);
-
-        // Adjust stage size
-        popupStage.setWidth(470);
-        popupStage.setHeight(350);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/com/example/projectpbo/login/reset-code-view.fxml"
-        ));
-        Parent root = loader.load();
-        Scene popupScene = new Scene(root);
-        CodeController codeController = loader.getController();
-        codeController.setCodeScene(popupScene);
-        codeController.setCodeStage(popupStage);
-        popupStage.setScene(popupScene);
-        popupStage.sizeToScene();
-        popupStage.setTitle("Reset Code");
-
-        popupStage.show();
     }
 
     @FXML
@@ -64,10 +35,10 @@ public class MainController {
 
         // Logout
         SharedData.getInstance().updateLoggedAccount();
-        AccountDAO.setLoginStatus(SharedData.getInstance().getAccount(), 0);
+        AccountDAO.setLoginStatus(SharedData.getInstance().getAccount(), false);
 
         mainStage.setScene(loginScene);
-        mainStage.setTitle("Login");
+        mainStage.setTitle("Was Wis Wus");
         mainStage.sizeToScene();
         mainStage.show();
     }

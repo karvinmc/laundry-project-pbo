@@ -25,6 +25,7 @@ public class PromoDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Promo promo = new Promo(
+                        rs.getInt("id_promo"),
                         rs.getString("nama_promo"),
                         rs.getString("start_date_promo"),
                         rs.getString("end_date_promo")

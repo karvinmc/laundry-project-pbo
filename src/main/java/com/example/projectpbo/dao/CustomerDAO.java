@@ -25,6 +25,7 @@ public class CustomerDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Customer customer = new Customer(
+                        rs.getInt("id_customer"),
                         rs.getString("nama_customer"),
                         rs.getString("alamat_customer"),
                         rs.getInt("no_telp_customer"),

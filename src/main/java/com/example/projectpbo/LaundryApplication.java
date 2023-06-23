@@ -1,6 +1,7 @@
 package com.example.projectpbo;
 
-import com.example.projectpbo.controllers.MainController;
+import com.example.projectpbo.controllers.main.ItemController;
+import com.example.projectpbo.controllers.main.MainController;
 import com.example.projectpbo.controllers.login.LoginController;
 import com.example.projectpbo.dao.AccountDAO;
 import javafx.application.Application;
@@ -18,7 +19,7 @@ public class LaundryApplication extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(LaundryApplication.class.getResource(
                     "/com/example/projectpbo/main/main-view.fxml"
             ));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
             fxmlLoader.<MainController>getController().setMainScene(scene);
             stage.setTitle("Was Wis Wus");
             stage.setScene(scene);

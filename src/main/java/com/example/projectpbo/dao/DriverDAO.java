@@ -25,6 +25,7 @@ public class DriverDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Driver driver = new Driver(
+                        rs.getInt("id_driver"),
                         rs.getString("nama_driver"),
                         rs.getInt("no_telp_driver")
                 );

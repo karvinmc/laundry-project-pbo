@@ -21,17 +21,16 @@ public class OrderDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Order order = new Order(
+                        rs.getInt("id_order"),
                         rs.getDate("tanggal_order").toLocalDate(),
                         rs.getInt("total_harga"),
-                        rs.getInt("down_payment"),
-                        rs.getBoolean("is_pickup"),
-                        rs.getBoolean("is_delivery"),
-                        rs.getInt("ongkos_kirim_pickup"),
                         rs.getInt("ongkos_kirim_delivery"),
+                        rs.getInt("id_item"),
                         rs.getInt("id_customer"),
                         rs.getInt("id_promo"),
                         rs.getInt("id_driver"),
-                        rs.getInt("id_metode_pembayaran")
+                        rs.getInt("id_metode_pembayaran"),
+                        rs.getString("lama_peyelesaian")
                 );
                 orderList.add(order);
             }
@@ -50,20 +49,18 @@ public class OrderDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("INSERT INTO "
-                    + TABLE_NAME + "(total_harga, down_payment, is_pickup, is_delivery, ongkos_kirim_pickup, " +
-                    "ongkos_kirim_delivery, id_customer, id_promo, id_driver, id_metode_pembayaran, tanggal_order) " +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + TABLE_NAME + "(total_harga, ongkos_kirim_delivery, id_customer, id_promo, id_driver, " +
+                    "id_metode_pembayaran, tanggal_order, id_item, lama_penyelesaian) " +
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setInt(1, order.getTotalHarga());
-            ps.setInt(2, order.getDownPayment());
-            ps.setBoolean(3, order.isIsPickup());
-            ps.setBoolean(4, order.isIsPickup());
-            ps.setInt(5, order.getOngkosKirimPickup());
-            ps.setInt(6, order.getOngkosKirimDelivery());
-            ps.setInt(7, order.getCustomer().getIdCustomer());
-            ps.setInt(8, order.getPromoOrder().getIdPromo());
-            ps.setInt(9, order.getDriver().getIdDriver());
-            ps.setInt(10, order.getMetodePembayaran().getIdMetodePembayaran());
-            ps.setDate(11, Date.valueOf(order.getTanggalOrder()));
+            ps.setInt(2, order.getOngkosKirimDelivery());
+            ps.setInt(3, order.getCustomer().getIdCustomer());
+            ps.setInt(4, order.getPromoOrder().getIdPromo());
+            ps.setInt(5, order.getDriver().getIdDriver());
+            ps.setInt(6, order.getMetodePembayaran().getIdMetodePembayaran());
+            ps.setDate(7, Date.valueOf(order.getTanggalOrder()));
+            ps.setString(8, order.getLamaPeyelesaian());
+            ps.setInt(9, order.getItem().getIdItem());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -79,22 +76,19 @@ public class OrderDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
-                    + TABLE_NAME + " SET `total_harga` = ?, SET `down_payment` = ?, SET `is_pickup` = ?, , SET `is_delivery` = ?" +
-                    "SET `ongkos_kirim_pickup` = ?, SET `ongkos_kirim_delivery` = ?, SET `id_customer` = ?, SET `id_promo` = ?, " +
-                    "SET `id_driver` = ?, SET `id_metode_pembayaran` = ?, SET `tanggal_order` = ?"
+                    + TABLE_NAME + " SET `total_harga` = ?, SET `ongkos_kirim_delivery` = ?, SET `id_customer` = ?, SET `id_promo` = ?, " +
+                    "SET `id_driver` = ?, SET `id_metode_pembayaran` = ?, SET `tanggal_order` = ?, SET `id_item` = ?, SET `lama_penyelesaian` = ?"
                     + " WHERE `id_order` = ?");
             ps.setInt(1, order.getTotalHarga());
-            ps.setInt(2, order.getDownPayment());
-            ps.setBoolean(3, order.isIsPickup());
-            ps.setBoolean(4, order.isIsPickup());
-            ps.setInt(5, order.getOngkosKirimPickup());
-            ps.setInt(6, order.getOngkosKirimDelivery());
-            ps.setInt(7, order.getCustomer().getIdCustomer());
-            ps.setInt(8, order.getPromoOrder().getIdPromo());
-            ps.setInt(9, order.getDriver().getIdDriver());
-            ps.setInt(10, order.getMetodePembayaran().getIdMetodePembayaran());
-            ps.setDate(11, Date.valueOf(order.getTanggalOrder()));
-            ps.setInt(12, order.getIdOrder());
+            ps.setInt(2, order.getOngkosKirimDelivery());
+            ps.setInt(3, order.getCustomer().getIdCustomer());
+            ps.setInt(4, order.getPromoOrder().getIdPromo());
+            ps.setInt(5, order.getDriver().getIdDriver());
+            ps.setInt(6, order.getMetodePembayaran().getIdMetodePembayaran());
+            ps.setDate(7, Date.valueOf(order.getTanggalOrder()));
+            ps.setInt(8, order.getItem().getIdItem());
+            ps.setString(9, order.getLamaPeyelesaian());
+            ps.setInt(10, order.getIdOrder());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

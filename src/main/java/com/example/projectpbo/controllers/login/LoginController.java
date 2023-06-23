@@ -1,7 +1,7 @@
 package com.example.projectpbo.controllers.login;
 
 import com.example.projectpbo.beans.Account;
-import com.example.projectpbo.controllers.MainController;
+import com.example.projectpbo.controllers.main.MainController;
 import com.example.projectpbo.dao.AccountDAO;
 import com.example.projectpbo.shared.SharedData;
 import javafx.fxml.FXML;
@@ -54,7 +54,7 @@ public class LoginController {
         for (Account a : accountList) {
             if (a.getUsernameAccount().equals(username) &&
                     a.getPasswordAccount().equals(password)) {
-                AccountDAO.setLoginStatus(a, 1);
+                AccountDAO.setLoginStatus(a, true);
                 SharedData.getInstance().setAccount(a);
                 isValid = true;
                 break;

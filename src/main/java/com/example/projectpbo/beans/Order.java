@@ -1,10 +1,6 @@
 package com.example.projectpbo.beans;
 
-import com.example.projectpbo.dao.CustomerDAO;
-import com.example.projectpbo.dao.DriverDAO;
-import com.example.projectpbo.dao.MetodePembayaranDAO;
-import com.example.projectpbo.dao.PromoDAO;
-import javafx.beans.property.SimpleBooleanProperty;
+import com.example.projectpbo.dao.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -14,47 +10,41 @@ import java.util.ArrayList;
 public class Order {
     private SimpleStringProperty tanggalOrder;
     private SimpleIntegerProperty totalHarga;
-    private SimpleIntegerProperty downPayment;
-    private SimpleBooleanProperty isPickup;
-    private SimpleBooleanProperty isDelivery;
-    private SimpleIntegerProperty ongkosKirimPickup; // ???
     private SimpleIntegerProperty ongkosKirimDelivery;
     private SimpleIntegerProperty idOrder;
+    private Item item;
     private Customer customer;
     private Promo promoOrder;
     private Driver driver;
     private MetodePembayaran metodePembayaran;
+    private SimpleStringProperty lamaPeyelesaian;
 
     // Constructor
-    public Order(LocalDate tanggalOrder, int totalHarga, int downPayment, boolean isPickUp, boolean isDelivery,
-                 int ongkosKirimPickup, int ongkosKirimDelivery, int idCustomer, int idPromo, int idDriver, int idMetodePembayaran) {
+    public Order(LocalDate tanggalOrder, int totalHarga, int ongkosKirimDelivery, int idCustomer, int idItem,
+                 int idPromo, int idDriver, int idMetodePembayaran, String lamaPenyelesaian) {
         this.tanggalOrder = new SimpleStringProperty(tanggalOrder.toString());
         this.totalHarga = new SimpleIntegerProperty(totalHarga);
-        this.downPayment = new SimpleIntegerProperty(downPayment);
-        this.isPickup = new SimpleBooleanProperty(isPickUp);
-        this.isDelivery = new SimpleBooleanProperty(isDelivery);
-        this.ongkosKirimPickup = new SimpleIntegerProperty(ongkosKirimPickup);
         this.ongkosKirimDelivery = new SimpleIntegerProperty(ongkosKirimDelivery);
+        this.item = getItem(idItem);
         this.customer = getCustomer(idCustomer);
         this.promoOrder = getPromoOrder(idPromo);
         this.driver = getDriver(idDriver);
         this.metodePembayaran = getMetodePembayaran(idMetodePembayaran);
+        this.lamaPeyelesaian = new SimpleStringProperty(lamaPenyelesaian);
     }
 
-    public Order(int idOrder, LocalDate tanggalOrder, int totalHarga, int downPayment, boolean isPickUp, boolean isDelivery,
-                 int ongkosKirimPickup, int ongkosKirimDelivery, int idCustomer, int idPromo, int idDriver, int idMetodePembayaran) {
+    public Order(int idOrder, LocalDate tanggalOrder, int totalHarga, int ongkosKirimDelivery, int idCustomer, int idItem,
+                 int idPromo, int idDriver, int idMetodePembayaran, String lamaPeyelesaian) {
         this.idOrder = new SimpleIntegerProperty(idOrder);
         this.tanggalOrder = new SimpleStringProperty(tanggalOrder.toString());
         this.totalHarga = new SimpleIntegerProperty(totalHarga);
-        this.downPayment = new SimpleIntegerProperty(downPayment);
-        this.isPickup = new SimpleBooleanProperty(isPickUp);
-        this.isDelivery = new SimpleBooleanProperty(isDelivery);
-        this.ongkosKirimPickup = new SimpleIntegerProperty(ongkosKirimPickup);
         this.ongkosKirimDelivery = new SimpleIntegerProperty(ongkosKirimDelivery);
+        this.item = getItem(idItem);
         this.customer = getCustomer(idCustomer);
         this.promoOrder = getPromoOrder(idPromo);
         this.driver = getDriver(idDriver);
         this.metodePembayaran = getMetodePembayaran(idMetodePembayaran);
+        this.lamaPeyelesaian = new SimpleStringProperty(lamaPeyelesaian);
     }
 
     // Getter setters
@@ -80,54 +70,6 @@ public class Order {
 
     public void setTotalHarga(int totalHarga) {
         this.totalHarga.set(totalHarga);
-    }
-
-    public int getDownPayment() {
-        return downPayment.get();
-    }
-
-    public SimpleIntegerProperty downPaymentProperty() {
-        return downPayment;
-    }
-
-    public void setDownPayment(int downPayment) {
-        this.downPayment.set(downPayment);
-    }
-
-    public boolean isIsPickup() {
-        return isPickup.get();
-    }
-
-    public SimpleBooleanProperty isPickupProperty() {
-        return isPickup;
-    }
-
-    public void setIsPickup(boolean isPickup) {
-        this.isPickup.set(isPickup);
-    }
-
-    public boolean isIsDelivery() {
-        return isDelivery.get();
-    }
-
-    public SimpleBooleanProperty isDeliveryProperty() {
-        return isDelivery;
-    }
-
-    public void setIsDelivery(boolean isDelivery) {
-        this.isDelivery.set(isDelivery);
-    }
-
-    public int getOngkosKirimPickup() {
-        return ongkosKirimPickup.get();
-    }
-
-    public SimpleIntegerProperty ongkosKirimPickupProperty() {
-        return ongkosKirimPickup;
-    }
-
-    public void setOngkosKirimPickup(int ongkosKirimPickup) {
-        this.ongkosKirimPickup.set(ongkosKirimPickup);
     }
 
     public int getOngkosKirimDelivery() {
@@ -186,6 +128,26 @@ public class Order {
         this.metodePembayaran = metodePembayaran;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public String getLamaPeyelesaian() {
+        return lamaPeyelesaian.get();
+    }
+
+    public SimpleStringProperty lamaPeyelesaianProperty() {
+        return lamaPeyelesaian;
+    }
+
+    public void setLamaPeyelesaian(String lamaPeyelesaian) {
+        this.lamaPeyelesaian.set(lamaPeyelesaian);
+    }
+
     // Methods
     private Customer getCustomer(int idCustomer) {
         ArrayList<Customer> customerList = CustomerDAO.getAllCustomer();
@@ -222,6 +184,15 @@ public class Order {
         for (MetodePembayaran mp : metodePembayaranList) {
             if (mp.getIdMetodePembayaran() == idMetodePembayaran) {
                 return mp;
+            }
+        }
+        return null;
+    }
+    private Item getItem(int idItem) {
+        ArrayList<Item> itemList = ItemDAO.getAllItem();
+        for (Item i : itemList) {
+            if (i.getIdItem() == idItem) {
+                return i;
             }
         }
         return null;
