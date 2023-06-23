@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Order {
     private SimpleStringProperty tanggalOrder;
+    private SimpleStringProperty service;
     private SimpleIntegerProperty totalHarga;
     private SimpleIntegerProperty ongkosKirimDelivery;
     private SimpleIntegerProperty idOrder;
@@ -21,7 +22,7 @@ public class Order {
 
     // Constructor
     public Order(LocalDate tanggalOrder, int totalHarga, int ongkosKirimDelivery, int idCustomer, int idItem,
-                 int idPromo, int idDriver, int idMetodePembayaran, String lamaPenyelesaian) {
+                 int idPromo, int idDriver, int idMetodePembayaran, String lamaPenyelesaian, String service) {
         this.tanggalOrder = new SimpleStringProperty(tanggalOrder.toString());
         this.totalHarga = new SimpleIntegerProperty(totalHarga);
         this.ongkosKirimDelivery = new SimpleIntegerProperty(ongkosKirimDelivery);
@@ -31,10 +32,11 @@ public class Order {
         this.driver = getDriver(idDriver);
         this.metodePembayaran = getMetodePembayaran(idMetodePembayaran);
         this.lamaPeyelesaian = new SimpleStringProperty(lamaPenyelesaian);
+        this.service = new SimpleStringProperty(service);
     }
 
     public Order(int idOrder, LocalDate tanggalOrder, int totalHarga, int ongkosKirimDelivery, int idCustomer, int idItem,
-                 int idPromo, int idDriver, int idMetodePembayaran, String lamaPeyelesaian) {
+                 int idPromo, int idDriver, int idMetodePembayaran, String lamaPeyelesaian, String service) {
         this.idOrder = new SimpleIntegerProperty(idOrder);
         this.tanggalOrder = new SimpleStringProperty(tanggalOrder.toString());
         this.totalHarga = new SimpleIntegerProperty(totalHarga);
@@ -45,6 +47,7 @@ public class Order {
         this.driver = getDriver(idDriver);
         this.metodePembayaran = getMetodePembayaran(idMetodePembayaran);
         this.lamaPeyelesaian = new SimpleStringProperty(lamaPeyelesaian);
+        this.service = new SimpleStringProperty(service);
     }
 
     // Getter setters
@@ -101,7 +104,15 @@ public class Order {
     }
 
     public void setCustomer(Customer customer) {
-        this.customer = customer;
+       this.customer = customer;
+    }
+
+    public void setCustomer(int idCustomer) {
+        for (Customer c : CustomerDAO.getAllCustomer()) {
+            if (c.getIdCustomer() == idCustomer) {
+                this.customer = c;
+            }
+        }
     }
 
     public Promo getPromoOrder() {
@@ -112,12 +123,26 @@ public class Order {
         this.promoOrder = promoOrder;
     }
 
+    public void setPromoOrder(int idPromo) {
+        for (Promo p : PromoDAO.getAllPromo()) {
+            if (p.getIdPromo() == idPromo) {
+                this.promoOrder = p;
+            }
+        }
+    }
+
     public Driver getDriver() {
         return driver;
     }
 
     public void setDriver(Driver driver) {
         this.driver = driver;
+    }
+
+    public void setDriver(int idDriver) {
+        for (Driver d : DriverDAO.getAllDriver()) {
+            this.driver = d;
+        }
     }
 
     public MetodePembayaran getMetodePembayaran() {
@@ -128,12 +153,26 @@ public class Order {
         this.metodePembayaran = metodePembayaran;
     }
 
+    public void setMetodePembayaran(int idMetode) {
+        for (MetodePembayaran mp : MetodePembayaranDAO.getAllMetodePembayaran()) {
+            this.metodePembayaran = mp;
+        }
+    }
+
     public Item getItem() {
         return item;
     }
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public void setItem(int idItem) {
+        for (Item i : ItemDAO.getAllItem()) {
+            if (i.getIdItem() == idItem) {
+                this.item = i;
+            }
+        }
     }
 
     public String getLamaPeyelesaian() {
@@ -146,6 +185,18 @@ public class Order {
 
     public void setLamaPeyelesaian(String lamaPeyelesaian) {
         this.lamaPeyelesaian.set(lamaPeyelesaian);
+    }
+
+    public String getService() {
+        return service.get();
+    }
+
+    public SimpleStringProperty serviceProperty() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service.set(service);
     }
 
     // Methods

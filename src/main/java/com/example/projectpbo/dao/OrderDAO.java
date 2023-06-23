@@ -30,7 +30,8 @@ public class OrderDAO {
                         rs.getInt("id_promo"),
                         rs.getInt("id_driver"),
                         rs.getInt("id_metode_pembayaran"),
-                        rs.getString("lama_peyelesaian")
+                        rs.getString("lama_penyelesaian"),
+                        rs.getString("service")
                 );
                 orderList.add(order);
             }
@@ -50,8 +51,8 @@ public class OrderDAO {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("INSERT INTO "
                     + TABLE_NAME + "(total_harga, ongkos_kirim_delivery, id_customer, id_promo, id_driver, " +
-                    "id_metode_pembayaran, tanggal_order, id_item, lama_penyelesaian) " +
-                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+                    "id_metode_pembayaran, tanggal_order, id_item, lama_penyelesaian, service) " +
+                    "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setInt(1, order.getTotalHarga());
             ps.setInt(2, order.getOngkosKirimDelivery());
             ps.setInt(3, order.getCustomer().getIdCustomer());
@@ -59,8 +60,9 @@ public class OrderDAO {
             ps.setInt(5, order.getDriver().getIdDriver());
             ps.setInt(6, order.getMetodePembayaran().getIdMetodePembayaran());
             ps.setDate(7, Date.valueOf(order.getTanggalOrder()));
-            ps.setString(8, order.getLamaPeyelesaian());
-            ps.setInt(9, order.getItem().getIdItem());
+            ps.setInt(8, order.getItem().getIdItem());
+            ps.setString(9, order.getLamaPeyelesaian());
+            ps.setString(10, order.getService());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -76,10 +78,10 @@ public class OrderDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
-                    + TABLE_NAME + " SET `total_harga` = ?, SET `ongkos_kirim_delivery` = ?, SET `id_customer` = ?, SET `id_promo` = ?, " +
-                    "SET `id_driver` = ?, SET `id_metode_pembayaran` = ?, SET `tanggal_order` = ?, SET `id_item` = ?, SET `lama_penyelesaian` = ?"
+                    + TABLE_NAME + " SET `total_harga` = ?, `ongkos_kirim_delivery` = ?, `id_customer` = ?, `id_promo` = ?, " +
+                    "`id_driver` = ?, `id_metode_pembayaran` = ?, `tanggal_order` = ?, `id_item` = ?, `lama_penyelesaian` = ?, `service` = ?"
                     + " WHERE `id_order` = ?");
-            ps.setInt(1, order.getTotalHarga());
+            ps.setInt(1 , order.getTotalHarga());
             ps.setInt(2, order.getOngkosKirimDelivery());
             ps.setInt(3, order.getCustomer().getIdCustomer());
             ps.setInt(4, order.getPromoOrder().getIdPromo());
@@ -88,7 +90,27 @@ public class OrderDAO {
             ps.setDate(7, Date.valueOf(order.getTanggalOrder()));
             ps.setInt(8, order.getItem().getIdItem());
             ps.setString(9, order.getLamaPeyelesaian());
-            ps.setInt(10, order.getIdOrder());
+            ps.setString(10, order.getService());
+            ps.setInt(11, order.getIdOrder());
+            ps.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DBUtils.close(ps);
+            DBUtils.closeConnection(con);
+        }
+    }
+
+    public static void setMetodePembayaran(Order order) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = DBUtils.createConnection();
+            ps = con.prepareStatement("UPDATE "
+                    + TABLE_NAME + " SET `id_metode_pembayaran` = ?"
+                    + " WHERE `id_order` = ?");
+            ps.setInt(1, order.getMetodePembayaran().getIdMetodePembayaran());
+            ps.setInt(2, order.getIdOrder());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

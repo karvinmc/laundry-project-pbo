@@ -1,6 +1,5 @@
 package com.example.projectpbo.dao;
 
-import com.example.projectpbo.beans.Account;
 import com.example.projectpbo.beans.Customer;
 import com.example.projectpbo.utils.DBUtils;
 
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerDAO {
-    private static final String TABLE_NAME = "customer_table";
+    private static final String TABLE_NAME = "customers_table";
 
     public static ArrayList<Customer> getAllCustomer() {
         ArrayList<Customer> customerList = new ArrayList<>();
@@ -68,7 +67,7 @@ public class CustomerDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
-                    + TABLE_NAME + " SET `nama_customer` = ?, SET `alamat_customer` = ?, SET `no_telp_customer` = ?, SET `id_radius` = ?"
+                    + TABLE_NAME + " SET `nama_customer` = ?, `alamat_customer` = ?, `no_telp_customer` = ?, `id_radius` = ?"
                     + " WHERE `id_customer` = ?");
             ps.setString(1, customer.getNamaCustomer());
             ps.setString(2, customer.getAlamatCustomer());

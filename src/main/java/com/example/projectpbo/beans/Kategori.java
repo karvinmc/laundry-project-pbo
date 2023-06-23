@@ -18,6 +18,7 @@ public class Kategori {
     }
 
     // Getter setters
+
     public String getNamaKategori() {
         return namaKategori.get();
     }

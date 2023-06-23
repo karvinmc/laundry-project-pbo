@@ -10,20 +10,20 @@ public class Item {
     private SimpleStringProperty namaItem;
     private SimpleIntegerProperty hargaItem;
     private SimpleIntegerProperty idItem;
-    private Kategori kategoriItem;
+    private Kategori kategori;
 
     // Constructor
     public Item(String namaItem, int hargaItem, int idKategori) {
         this.namaItem = new SimpleStringProperty(namaItem);
         this.hargaItem = new SimpleIntegerProperty(hargaItem);
-        this.kategoriItem = getKategoriItem(idKategori);
+        this.kategori = getKategoriItem(idKategori);
     }
 
     public Item(int idItem, String namaItem, int hargaItem, int idKategori) {
         this.idItem = new SimpleIntegerProperty(idItem);
         this.namaItem = new SimpleStringProperty(namaItem);
         this.hargaItem = new SimpleIntegerProperty(hargaItem);
-        this.kategoriItem = getKategoriItem(idKategori);
+        this.kategori = getKategoriItem(idKategori);
     }
 
 
@@ -64,22 +64,28 @@ public class Item {
         this.idItem.set(idItem);
     }
 
-    public Kategori getKategoriItem() {
-        return kategoriItem;
+    public Kategori getKategori() {
+        return kategori;
     }
 
-    public void setKategoriItem(Kategori kategoriItem) {
-        this.kategoriItem = kategoriItem;
+    public void setKategori(Kategori kategori) {
+        this.kategori = kategori;
+    }
+
+    public void setKategori(int idKategori) {
+        for (Kategori k : KategoriDAO.getAllKategori()) {
+            if (k.getIdKategori() == idKategori) {
+                this.kategori = k;
+            }
+        }
     }
 
     // Methods
     private Kategori getKategoriItem(int idKategori) {
-        ArrayList<Kategori> kategoriList = KategoriDAO.getAllKategori();
-        for (Kategori k : kategoriList) {
+        for (Kategori k : KategoriDAO.getAllKategori())
             if (k.getIdKategori() == idKategori) {
                 return k;
             }
-        }
         return null;
     }
 }

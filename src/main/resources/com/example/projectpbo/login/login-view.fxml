@@ -42,7 +42,6 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Hyperlink fx:id="forgotPasswordHyperLink" layoutX="348.0" layoutY="326.0" onAction="#onForgotPasswordClicked" text="Forgot Your Password?" />
-      <Hyperlink fx:id="createAccountHyperLink" layoutX="348.0" layoutY="349.0" onAction="#onCreateAccountClicked" text="Don't Have an Account?" />
+      <Hyperlink fx:id="createAccountHyperLink" layoutX="348.0" layoutY="303.0" onAction="#onCreateAccountClicked" text="Create Account" />
    </children>
 </Pane>

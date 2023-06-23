@@ -1,6 +1,5 @@
 package com.example.projectpbo.dao;
 
-import com.example.projectpbo.beans.Customer;
 import com.example.projectpbo.beans.Driver;
 import com.example.projectpbo.utils.DBUtils;
 
@@ -64,7 +63,7 @@ public class DriverDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
-                    + TABLE_NAME + " SET `nama_driver` = ?, SET `no_telp_driver` = ?"
+                    + TABLE_NAME + " SET `nama_driver` = ?, `no_telp_driver` = ?"
                     + " WHERE `id_driver` = ?");
             ps.setString(1, driver.getNamaDriver());
             ps.setInt(2, driver.getNoTelpDriver());

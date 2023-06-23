@@ -5,68 +5,79 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectpbo.controllers.main.OrderController">
-    <children>
-        <Button layoutX="795.0" layoutY="484.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="84.0" text="Add Order">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <Text layoutX="32.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <Text layoutX="32.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Harga">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <TextField editable="false" layoutX="165.0" layoutY="305.0" />
-        <Text layoutX="32.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <Text layoutX="32.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <ChoiceBox layoutX="165.0" layoutY="144.0" prefWidth="150.0" />
-        <Text layoutX="32.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lama selesai">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <TextField layoutX="165.0" layoutY="183.0" />
-        <Text layoutX="32.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal Order">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <DatePicker layoutX="165.0" layoutY="104.0" prefHeight="25.0" prefWidth="150.0" />
-        <ChoiceBox layoutX="165.0" layoutY="65.0" prefWidth="150.0" />
-        <Text layoutX="32.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Promo">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <ChoiceBox layoutX="165.0" layoutY="222.0" prefWidth="150.0" />
-        <Text layoutX="32.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ongkos Kirim">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <TextField editable="false" layoutX="165.0" layoutY="263.0" />
-        <Text layoutX="32.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Customer">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <ChoiceBox layoutX="165.0" layoutY="27.0" prefWidth="150.0" />
-    </children>
-</AnchorPane>
+
+<Pane prefHeight="505.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectpbo.controllers.main.OrderController">
+   <children>
+      <AnchorPane prefHeight="479.0" prefWidth="630.0">
+          <children>
+              <Button fx:id="onAdd" layoutX="567.0" layoutY="444.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="30.0" prefWidth="63.0" text="Cancel">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Button>
+              <Text layoutX="32.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <Text layoutX="32.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <Text layoutX="32.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <ChoiceBox fx:id="serviceChoiceBox" layoutX="165.0" layoutY="144.0" prefWidth="150.0" />
+              <Text layoutX="32.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lama selesai">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <TextField fx:id="lamaSelesaiTextField" layoutX="165.0" layoutY="183.0" />
+              <Text layoutX="32.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal Order">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <DatePicker fx:id="tanggalOrder" layoutX="165.0" layoutY="104.0" prefHeight="25.0" prefWidth="150.0" />
+              <ChoiceBox fx:id="itemChoiceBox" layoutX="165.0" layoutY="65.0" prefWidth="150.0" />
+              <Text layoutX="32.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Promo">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <ChoiceBox fx:id="promoChoiceBox" layoutX="165.0" layoutY="222.0" prefWidth="150.0" />
+              <Text layoutX="32.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Customer">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Text>
+              <ChoiceBox fx:id="namaCustomerChoiceBox" layoutX="165.0" layoutY="27.0" prefWidth="150.0" />
+            <Text layoutX="32.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Driver">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="driverChoiceBox" layoutX="165.0" layoutY="262.0" prefWidth="150.0" />
+            <Button layoutX="497.0" layoutY="444.0" mnemonicParsing="false" onAction="#onSave" prefHeight="30.0" prefWidth="57.0" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Text layoutX="32.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Metode Pembayaran">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="metodePembayaranChoiceBox" layoutX="165.0" layoutY="301.0" prefWidth="150.0" />
+          </children>
+      </AnchorPane>
+   </children>
+</Pane>

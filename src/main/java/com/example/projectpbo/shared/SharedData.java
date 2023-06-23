@@ -16,6 +16,12 @@ public class SharedData {
     private ObservableList<String> promoObservableList;
     private ObservableList<String> itemObservableList;
     private ObservableList<String> kategoriObservableList;
+    private ObservableList<String> metodeObservableList;
+    private ObservableList<Order> orderTable;
+    private ObservableList<Customer> customerTable;
+    private ObservableList<Item> itemTable;
+    private ObservableList<Promo> promoTable;
+    private ObservableList<Driver> driverTable;
 
     // Constructor
     public SharedData() {
@@ -24,6 +30,12 @@ public class SharedData {
         this.promoObservableList = FXCollections.observableArrayList();
         this.itemObservableList = FXCollections.observableArrayList();
         this.kategoriObservableList = FXCollections.observableArrayList();
+        this.orderTable = FXCollections.observableArrayList();
+        this.metodeObservableList = FXCollections.observableArrayList();
+        this.customerTable = FXCollections.observableArrayList();
+        this.itemTable = FXCollections.observableArrayList();
+        this.promoTable = FXCollections.observableArrayList();
+        this.driverTable = FXCollections.observableArrayList();
     }
 
     // Getter setters
@@ -78,6 +90,54 @@ public class SharedData {
 
     public void setKategoriObservableList(ObservableList<String> kategoriObservableList) {
         this.kategoriObservableList = kategoriObservableList;
+    }
+
+    public ObservableList<Order> getOrderTable() {
+        return orderTable;
+    }
+
+    public void setOrderTable(ObservableList<Order> orderTable) {
+        this.orderTable = orderTable;
+    }
+
+    public ObservableList<String> getMetodeObservableList() {
+        return metodeObservableList;
+    }
+
+    public void setMetodeObservableList(ObservableList<String> metodeObservableList) {
+        this.metodeObservableList = metodeObservableList;
+    }
+
+    public ObservableList<Customer> getCustomerTable() {
+        return customerTable;
+    }
+
+    public void setCustomerTable(ObservableList<Customer> customerTable) {
+        this.customerTable = customerTable;
+    }
+
+    public ObservableList<Item> getItemTable() {
+        return itemTable;
+    }
+
+    public void setItemTable(ObservableList<Item> itemTable) {
+        this.itemTable = itemTable;
+    }
+
+    public ObservableList<Promo> getPromoTable() {
+        return promoTable;
+    }
+
+    public void setPromoTable(ObservableList<Promo> promoTable) {
+        this.promoTable = promoTable;
+    }
+
+    public ObservableList<Driver> getDriverTable() {
+        return driverTable;
+    }
+
+    public void setDriverTable(ObservableList<Driver> driverTable) {
+        this.driverTable = driverTable;
     }
 
     /**
@@ -149,5 +209,35 @@ public class SharedData {
         }
 
         kategoriObservableList.setAll(promoOptions);
+    }
+
+    public void refreshMetodeChoiceBox() {
+        ArrayList<String> metodeOptions = new ArrayList<>();
+
+        for (MetodePembayaran mp : MetodePembayaranDAO.getAllMetodePembayaran()) {
+            metodeOptions.add(mp.getIdMetodePembayaran() + " - " + mp.getNamaMetode());
+        }
+
+        metodeObservableList.setAll(metodeOptions);
+    }
+
+    public void refreshOrderTable() {
+        orderTable.setAll(OrderDAO.getAllOrder());
+    }
+
+    public void refreshCustomerTable() {
+        customerTable.setAll(CustomerDAO.getAllCustomer());
+    }
+
+    public void refreshItemTable() {
+        itemTable.setAll(ItemDAO.getAllItem());
+    }
+
+    public void refreshPromoTable() {
+        promoTable.setAll(PromoDAO.getAllPromo());
+    }
+
+    public void refreshDriverTable() {
+        driverTable.setAll(DriverDAO.getAllDriver());
     }
 }

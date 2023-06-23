@@ -66,11 +66,12 @@ public class PromoDAO {
         try {
             con = DBUtils.createConnection();
             ps = con.prepareStatement("UPDATE "
-                    + TABLE_NAME + " SET `nama_promo` = ?, SET `start_date_promo` = ?, SET `end_date_promo` = ?"
+                    + TABLE_NAME + " SET `nama_promo` = ?, `start_date_promo` = ?, `end_date_promo` = ?"
                     + " WHERE `id_promo` = ?");
             ps.setString(1, promo.getNamaPromo());
             ps.setString(2, promo.getStartDatePromo());
             ps.setString(3, promo.getEndDatePromo());
+            ps.setInt(4, promo.getIdPromo());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);

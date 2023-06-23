@@ -87,6 +87,14 @@ public class Customer {
         this.radiusCustomer = radiusCustomer;
     }
 
+    public void setRadiusCustomer(int idRadius) {
+        for (Radius r : RadiusDAO.getAllRadius()) {
+            if (r.getIdRadius() == idRadius) {
+                this.radiusCustomer = r;
+            }
+        }
+    }
+
     // Methods
     private Radius getRadiusCustomer(int idRadius) {
         ArrayList<Radius> radiusList = RadiusDAO.getAllRadius();

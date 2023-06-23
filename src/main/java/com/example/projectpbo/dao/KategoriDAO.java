@@ -56,7 +56,7 @@ public class KategoriDAO {
         }
     }
 
-    public static void updateCustomer(Kategori kategori) {
+    public static void updateKategori(Kategori kategori) {
         Connection con = null;
         PreparedStatement ps = null;
         try {
